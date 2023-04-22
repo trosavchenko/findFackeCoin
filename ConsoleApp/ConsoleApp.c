@@ -77,6 +77,50 @@ short findFakeCoin2(short cn[8])
 }
 
 
+short findFakeCoin3(short cn[8])
+{
+    //  1 2 3  4 5 6  7 8
+    //  1 ta 2
+
+    short fakeCoin;
+
+    if (cn[0] > cn[1])
+    {
+        fakeCoin = 1;
+    }
+    else if(cn[1] > cn[2])
+    {
+        fakeCoin = 2;
+    }
+    else if (cn[2] > cn[3])
+    {
+        fakeCoin = 3;
+    }
+    else if (cn[3] > cn[4])
+    {
+        fakeCoin = 4;
+    }
+    else if (cn[4] > cn[5])
+    {
+        fakeCoin = 5;
+    }
+    else if (cn[5] > cn[6])
+    {
+        fakeCoin = 6;
+    }
+    else if (cn[6] > cn[7])
+    {
+        fakeCoin = 7;
+    }
+    else
+    {
+        fakeCoin = 8;
+    }
+
+    return fakeCoin;
+}
+
+
 void main()
 {
     /*
@@ -137,5 +181,10 @@ void main()
     coin[7] = 1;
 
     fakeCoin = findFakeCoin2(coin);
+    printf("coin %d is fake!\n", fakeCoin);
+
+
+
+    fakeCoin = findFakeCoin3(coin);
     printf("coin %d is fake!\n", fakeCoin);
 }
