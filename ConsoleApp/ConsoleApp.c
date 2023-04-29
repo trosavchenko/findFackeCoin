@@ -76,11 +76,6 @@ short findFakeCoin2(short cn[8])
     return fakeCoin;
 }
 
-
-
-
-
-
 short findFakeCoin3(short cn[8])
 {
     //  1 2 3  4 5 6  7 8
@@ -124,6 +119,63 @@ short findFakeCoin3(short cn[8])
     return fakeCoin;
 }
 
+short findFakeCoin4(short cn[8])
+{
+    //  1 2 3  4 5 6  7 8
+
+    // (1 2 3) == (4 5 6)   7 > 8
+    // (1 2 3) > (4 5 6)    1==2     3
+    // (1 2 3) < (4 5 6)    4==5     6
+
+    short fakeCoin = 0;
+
+    short coin123 = cn[0] + cn[1] + cn[2];
+    short coin456 = cn[3] + cn[4] + cn[5];
+
+    if(coin123 > coin456)
+    {
+        if(cn[0] > cn[1])
+        {
+            fakeCoin = 1;
+        }
+        else if(cn[0] < cn[1])
+        {
+            fakeCoin = 2;
+        }
+        else if (cn[0] == cn[1])
+        {
+            fakeCoin = 3;
+        }
+    }
+    else if (coin123 < coin456)
+    {
+        if (cn[3] > cn[4])
+        {
+            fakeCoin = 4;
+        }
+        else if(cn[3] < cn[4])
+        {
+            fakeCoin = 5;
+        }
+        else if (cn[3] == cn[4])
+        {
+            fakeCoin = 6;
+        }
+    }
+    else if (coin123 == coin456)
+    {
+        if (cn[6] > cn[7])
+        {
+            fakeCoin = 7;
+        }
+        else
+        {
+            fakeCoin = 8;
+        }
+    }
+
+    return  fakeCoin;
+}
 
 void main()
 {
@@ -185,10 +237,11 @@ void main()
     coin[7] = 1;
 
     fakeCoin = findFakeCoin2(coin);
-    printf("coin %d is fake!\n", fakeCoin);
-
-
+    printf("findFakeCoin2: coin %d is fake!\n", fakeCoin);
 
     fakeCoin = findFakeCoin3(coin);
-    printf("coin %d is fake!\n", fakeCoin);
+    printf("findFakeCoin3: coin %d is fake!\n", fakeCoin);
+
+    fakeCoin = findFakeCoin4(coin);
+    printf("findFakeCoin4: coin %d is fake!\n", fakeCoin);
 }
